@@ -152,4 +152,15 @@ public class Repository {
         }
         return mAllExcursions;
     }
+    public List<Vacation> searchVacationByClientName(String clientName) throws InterruptedException{
+        final List<Vacation>[] result = new List[1];
+
+        Thread thread = new Thread(() ->{
+            result[0] = mVacationDAO.searchVacationByClientName(clientName);
+        });
+        thread.start();
+        thread.join();
+
+        return result[0];
+    }
 }

@@ -31,4 +31,8 @@ public interface VacationDAO {
     // Retrieve a specific vacation by its ID
     @Query("SELECT * FROM VACATIONS WHERE vacationId = :id")
     Vacation getVacationById(int id);
+
+    // Retrieve a clients name
+    @Query("SELECT * FROM vacations WHERE  clientFullName LIKE '%' || :clientName || '%'")
+    List<Vacation> searchVacationByClientName(String clientName);
 }
