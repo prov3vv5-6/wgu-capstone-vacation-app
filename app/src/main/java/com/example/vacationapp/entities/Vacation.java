@@ -13,10 +13,11 @@ public class Vacation {
     private String startDate;
     private String endDate;
     private String note;
+    private String clientFullName;
 
 
 
-    public Vacation(int vacationId, String vacationName, double price, String hotel, String startDate, String endDate, String note) {
+    public Vacation(int vacationId, String vacationName, double price, String hotel, String startDate, String endDate, String note, String clientFullName) {
         this.vacationId = vacationId;
         this.vacationName = vacationName;
         this.price = price;
@@ -24,6 +25,7 @@ public class Vacation {
         this.startDate = startDate;
         this.endDate = endDate;
         this.note = note;
+        this.clientFullName = clientFullName;
 
     }
 
@@ -81,6 +83,14 @@ public class Vacation {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getClientFullName() {
+        return clientFullName;
+    }
+
+    public void setClientFullName(String clientFullName) {
+        this.clientFullName = clientFullName;
     }
 }
 

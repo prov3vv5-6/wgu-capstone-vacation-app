@@ -45,6 +45,9 @@ public class VacationDetails extends AppCompatActivity {
     EditText editPrice;
     EditText editHotel;
     EditText editNote;
+    EditText editClientName;
+//    TextView editClientName;
+    String clientName;
 
 
 
@@ -59,10 +62,6 @@ public class VacationDetails extends AppCompatActivity {
     final Calendar myCalendarEnd = Calendar.getInstance();
     String myFormat = "MM/dd/yy";
     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-
-
-
 
     Repository repository;
     Vacation currentVacation;
@@ -88,6 +87,7 @@ public class VacationDetails extends AppCompatActivity {
         editStartDate = findViewById(R.id.startdatetext);
         editEndDate = findViewById(R.id.enddatetext);
         editNote = findViewById(R.id.note);
+        editClientName = findViewById(R.id.clientfullnametext);
 
 
         vacationId = getIntent().getIntExtra("id", -1);
@@ -97,6 +97,7 @@ public class VacationDetails extends AppCompatActivity {
         startDate = getIntent().getStringExtra("startDate");
         endDate = getIntent().getStringExtra("endDate");
         note = getIntent().getStringExtra("editNote");
+        clientName = getIntent().getStringExtra("clientName");
 
         editName.setText(name);
         editPrice.setText(Double.toString(price));
@@ -104,6 +105,7 @@ public class VacationDetails extends AppCompatActivity {
         editStartDate.setText(startDate);
         editEndDate.setText(endDate);
         editNote.setText(note);
+        editClientName.setText(clientName);
 
         // Date Methods
 
@@ -257,7 +259,7 @@ public class VacationDetails extends AppCompatActivity {
                 }
 
                 // Create a new Vacation object using values from the input fields
-                vacation = new Vacation(vacationId, editName.getText().toString(), Double.parseDouble(editPrice.getText().toString()), editHotel.getText().toString(), editStartDate.getText().toString(), editEndDate.getText().toString(), editNote.getText().toString());
+                vacation = new Vacation(vacationId, editName.getText().toString(), Double.parseDouble(editPrice.getText().toString()), editHotel.getText().toString(), editStartDate.getText().toString(), editEndDate.getText().toString(), editNote.getText().toString(), editClientName.getText().toString());
 
                 // Checks to make sure end date is after the start date
                 if(!myCalendarEnd.after(myCalendarStart)){
@@ -273,7 +275,7 @@ public class VacationDetails extends AppCompatActivity {
             }
             else{
                 // If vacationId is not -1, this is an existing vacation, so update it
-                vacation = new Vacation(vacationId, editName.getText().toString(), Double.parseDouble(editPrice.getText().toString()), editHotel.getText().toString(), editStartDate.getText().toString(),editEndDate.getText().toString(), editNote.getText().toString());
+                vacation = new Vacation(vacationId, editName.getText().toString(), Double.parseDouble(editPrice.getText().toString()), editHotel.getText().toString(), editStartDate.getText().toString(),editEndDate.getText().toString(), editNote.getText().toString(), editClientName.getText().toString());
 
                 // Checks to make sure end date is after the start date
                 if(!myCalendarEnd.after(myCalendarStart)){

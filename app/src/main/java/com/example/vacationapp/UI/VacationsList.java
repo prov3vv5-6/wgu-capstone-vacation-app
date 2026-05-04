@@ -129,7 +129,7 @@ public class VacationsList extends AppCompatActivity {
             repository = new Repository(getApplication());
 
             // Vacation 1 and 2 Excursions added
-            Vacation vacation = new Vacation(0, "Costa Rica", 200, "Hilton", "02/20/26", "03/01/26","hello");
+            Vacation vacation = new Vacation(0, "Costa Rica", 200, "Hilton", "02/20/26", "03/01/26","hello", "Kathy Blick");
             repository.insert(vacation);
             Excursion excursion = new Excursion(0, "Boat Tour", 300, 1, "Hiking");
             repository.insert(excursion);
@@ -137,7 +137,7 @@ public class VacationsList extends AppCompatActivity {
             repository.insert(excursion);
 
             // Vacation 2
-            vacation = new Vacation(0, "Mexico", 100, "Best Western", "02/20/26", "03/01/26", "hello");
+            vacation = new Vacation(0, "Mexico", 100, "Best Western", "02/20/26", "03/01/26", "hello", "Bob Blick");
             repository.insert(vacation);
 
 

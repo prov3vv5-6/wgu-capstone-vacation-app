@@ -73,6 +73,7 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.Vacati
                     intent.putExtra("startDate", current.getStartDate());
                     intent.putExtra("endDate", current.getEndDate());
                     intent.putExtra("note", current.getNote());
+                    intent.putExtra("clientName", current.getClientFullName());
 
                     // Start the new activity
                     context.startActivity(intent);

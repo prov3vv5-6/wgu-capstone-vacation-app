@@ -13,7 +13,7 @@ import com.example.vacationapp.entities.Vacation;
 
 // Defines the Room database configuration
 // Lists all entities (tables) included in the database
-@Database(entities = {Vacation.class, Excursion.class}, version = 14, exportSchema = false)
+@Database(entities = {Vacation.class, Excursion.class}, version = 17, exportSchema = false)
 public abstract class VacationDatabase extends RoomDatabase {
 
     // Abstract methods that provide access to DAO interfaces
