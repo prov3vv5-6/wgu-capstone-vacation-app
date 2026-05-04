@@ -46,7 +46,6 @@ public class VacationDetails extends AppCompatActivity {
     EditText editHotel;
     EditText editNote;
     EditText editClientName;
-//    TextView editClientName;
     String clientName;
 
 
