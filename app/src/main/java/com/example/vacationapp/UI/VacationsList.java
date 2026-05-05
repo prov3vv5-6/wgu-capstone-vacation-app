@@ -149,6 +149,14 @@ public class VacationsList extends AppCompatActivity {
             this.finish();
             return true;
         }
+        // Reports Item Selection
+        if(item.getItemId() == R.id.reports) {
+            Intent intent = new Intent(this, ReportActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+
         // Let Android handle any other menu actions
         return super.onOptionsItemSelected(item);
     }

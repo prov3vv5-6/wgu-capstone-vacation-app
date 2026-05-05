@@ -1,5 +1,68 @@
 package com.example.vacationapp.UI;
 
-public class ReportActivity {
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.vacationapp.R;
+import com.example.vacationapp.database.Repository;
+import com.example.vacationapp.entities.Vacation;
+
+import java.util.List;
+
+public class ReportActivity extends AppCompatActivity {
+    TextView reportTitle;
+    EditText searchClientName;
+    Button searchButton;
+    RecyclerView reportRecyclerView;
+    Repository repository;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_report);
+
+        reportTitle = findViewById(R.id.reportTitle);
+        searchClientName = findViewById(R.id.searchClientName);
+        searchButton = findViewById(R.id.searchButton);
+        reportRecyclerView = findViewById(R.id.reportRecyclerView);
+
+        repository = new Repository(getApplication());
+
+        // Button click logic
+        searchButton.setOnClickListener(view -> {
+
+            String clientName = searchClientName.getText().toString();
+
+            if(clientName.isEmpty()){
+                reportTitle.setText("Please enter a client name");
+                return;
+            }
+            try{
+                List<Vacation> results = repository.searchVacationByClientName(clientName);
+
+                reportTitle.setText("Report: " + clientName);
+
+                VacationAdapter adapter = new VacationAdapter(this);
+                reportRecyclerView.setAdapter(adapter);
+                reportRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+                adapter.setVacations(results);
+
+                if(results.isEmpty()){
+                    reportTitle.setText("No results found for: " + clientName);
+                } else {
+                    reportTitle.setText("Report: " + clientName);
+                }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
 }
