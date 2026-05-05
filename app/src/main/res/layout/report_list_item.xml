@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/reportVacationTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title:"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/reportClientName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Client Full Name:" />
+
+    <TextView
+        android:id="@+id/reportPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Price:" />
+
+    <TextView
+        android:id="@+id/reportHotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hotel:" />
+
+    <TextView
+        android:id="@+id/reportStartDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Date:" />
+
+    <TextView
+        android:id="@+id/reportEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="End Date:" />
+
+</LinearLayout>
