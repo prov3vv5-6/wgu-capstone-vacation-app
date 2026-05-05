@@ -269,6 +269,8 @@ public class VacationDetails extends AppCompatActivity {
                 // Insert the new vacation into the database
                 repository.insert(vacation);
 
+                Toast.makeText(VacationDetails.this, "Vacation saved successfully", Toast.LENGTH_SHORT).show();
+
                 // Close this screen and return to the previous one
                 this.finish();
             }
@@ -284,6 +286,8 @@ public class VacationDetails extends AppCompatActivity {
 
                 // Update the existing vacation in the database
                 repository.update(vacation);
+
+                Toast.makeText(VacationDetails.this, "Vacation updated successfully", Toast.LENGTH_SHORT).show();
 
                 // Close this screen and return to the previous one
                 this.finish();

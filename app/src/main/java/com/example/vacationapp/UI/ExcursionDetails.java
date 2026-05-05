@@ -172,6 +172,8 @@ public class ExcursionDetails extends AppCompatActivity {
                 // Insert the new excursion into the database
                 repository.insert(excursion);
 
+                Toast.makeText(ExcursionDetails.this, "Excursion saved successfully", Toast.LENGTH_SHORT).show();
+
                 // Close this screen and return to the previous one
                 this.finish();
 
@@ -181,6 +183,8 @@ public class ExcursionDetails extends AppCompatActivity {
 
                 // Update the existing excursion in the database
                 repository.update(excursion);
+
+                Toast.makeText(ExcursionDetails.this, "Excursion updated successfully", Toast.LENGTH_SHORT).show();
 
                 // Close this screen and return to the previous one
                 this.finish();
