@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vacationapp.R;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class LoginActivity extends AppCompatActivity {
     EditText usernameInput;
     EditText passwordInput;
@@ -35,13 +38,17 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            // TODO: validate credentials
-
             // Hard coded credentials
             String correctUsername = "admin";
-            String correctPassword = "password123";
 
-            if(username.equals(correctUsername) && password.equals(correctPassword)) {
+            // Hash instead of plain password
+            // password: password123
+            String correctPasswordHash = "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f";
+
+            // Hash what user typed
+            String enteredPasswordHash = hashPassword(password);
+
+            if(username.equals(correctUsername) && enteredPasswordHash.equals(correctPasswordHash)) {
 
                 // Go to Main Activity
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -52,6 +59,26 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+    }
+    // Hash method
+    private String hashPassword(String password){
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(password.getBytes());
+
+            StringBuilder hexString = new StringBuilder();
+
+            for(byte b : hashBytes) {
+                String hex = Integer.toHexString(0xff & b);
+                if(hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
