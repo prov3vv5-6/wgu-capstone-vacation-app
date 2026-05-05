@@ -20,7 +20,7 @@
         android:id="@+id/searchClientName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Search By Client Name: "
+        android:hint="Search By Client Name"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"

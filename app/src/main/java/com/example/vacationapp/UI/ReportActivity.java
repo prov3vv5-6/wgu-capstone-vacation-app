@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.vacationapp.R;
 import com.example.vacationapp.database.Repository;
 import com.example.vacationapp.entities.Vacation;
+import com.example.vacationapp.UI.ReportAdapter;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class ReportActivity extends AppCompatActivity {
     Button searchButton;
     RecyclerView reportRecyclerView;
     Repository repository;
+    ReportAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -46,9 +48,9 @@ public class ReportActivity extends AppCompatActivity {
             try{
                 List<Vacation> results = repository.searchVacationByClientName(clientName);
 
-                reportTitle.setText("Report: " + clientName);
+                reportTitle.setText("Report by Client: " + clientName);
 
-                VacationAdapter adapter = new VacationAdapter(this);
+                adapter = new ReportAdapter(this);
                 reportRecyclerView.setAdapter(adapter);
                 reportRecyclerView.setLayoutManager(new LinearLayoutManager(this));
                 adapter.setVacations(results);
@@ -56,7 +58,7 @@ public class ReportActivity extends AppCompatActivity {
                 if(results.isEmpty()){
                     reportTitle.setText("No results found for: " + clientName);
                 } else {
-                    reportTitle.setText("Report: " + clientName);
+                    reportTitle.setText("Report by Client: " + clientName);
                 }
 
             } catch (InterruptedException e) {
