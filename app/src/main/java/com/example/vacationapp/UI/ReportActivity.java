@@ -14,10 +14,14 @@ import com.example.vacationapp.database.Repository;
 import com.example.vacationapp.entities.Vacation;
 import com.example.vacationapp.UI.ReportAdapter;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ReportActivity extends AppCompatActivity {
     TextView reportTitle;
+    TextView generatedDateTime;
     EditText searchClientName;
     Button searchButton;
     RecyclerView reportRecyclerView;
@@ -33,6 +37,7 @@ public class ReportActivity extends AppCompatActivity {
         searchClientName = findViewById(R.id.searchClientName);
         searchButton = findViewById(R.id.searchButton);
         reportRecyclerView = findViewById(R.id.reportRecyclerView);
+        generatedDateTime = findViewById(R.id.generatedDateTime);
 
         repository = new Repository(getApplication());
 
@@ -40,6 +45,8 @@ public class ReportActivity extends AppCompatActivity {
         searchButton.setOnClickListener(view -> {
 
             String clientName = searchClientName.getText().toString();
+            String currentDateTime = new SimpleDateFormat("MM/dd/yyy HH:mm", Locale.getDefault()).format(new Date());
+            generatedDateTime.setText("Generated: " + currentDateTime);
 
             if(clientName.isEmpty()){
                 reportTitle.setText("Please enter a client name");
