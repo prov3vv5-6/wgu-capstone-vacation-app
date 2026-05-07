@@ -174,7 +174,6 @@ public class ExcursionDetails extends AppCompatActivity {
 
                 Toast.makeText(ExcursionDetails.this, "Excursion saved successfully", Toast.LENGTH_SHORT).show();
 
-                // Close this screen and return to the previous one
                 this.finish();
 
             } else {
@@ -185,8 +184,6 @@ public class ExcursionDetails extends AppCompatActivity {
                 repository.update(excursion);
 
                 Toast.makeText(ExcursionDetails.this, "Excursion updated successfully", Toast.LENGTH_SHORT).show();
-
-                // Close this screen and return to the previous one
                 this.finish();
 
             }
@@ -204,7 +201,12 @@ public class ExcursionDetails extends AppCompatActivity {
             if(currentExcursion != null) {
                 repository.delete(currentExcursion);
                 Toast.makeText(ExcursionDetails.this, currentExcursion.getExcursionName() + " was deleted", Toast.LENGTH_LONG).show();
-                this.finish();
+
+                // Close screen and return to Vacation List Screen
+                Intent intent = new Intent(ExcursionDetails.this, VacationsList.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
             }
         }
         // Notify/Alert date
