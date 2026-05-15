@@ -1,29 +1,61 @@
-<strong>**DO NOT DISTRIBUTE OR PUBLICLY POST SOLUTIONS TO THESE LABS. MAKE ALL FORKS OF THIS REPOSITORY WITH SOLUTION CODE PRIVATE. PLEASE REFER TO THE STUDENT CODE OF CONDUCT AND ETHICAL EXPECTATIONS FOR COLLEGE OF INFORMATION TECHNOLOGY STUDENTS FOR SPECIFICS. **</strong>
+# WGU Capstone Vacation Planner
 
-# WESTERN GOVERNORS UNIVERSITY 
-## D424 – SOFTWARE ENGINEERING CAPSTONE
-Welcome to Software Engineering Capstone! This is an opportunity for students to develop full stack software engineering documentation and applications. They will execute documentation, unit testing, revision of software applications, and deploy software applications with scripts and containers on a cloud platform.
+An Android vacation planning application with secure user authentication, persistent SQLite storage, and search/reporting features. Built as the capstone project for the WGU Bachelor of Science in Software Engineering (course D424).
 
-FOR SPECIFIC TASK INSTRUCTIONS AND REQUIREMENTS FOR THIS ASSESSMENT, PLEASE REFER TO THE COURSE PAGE.
-BASIC INSTRUCTIONS
-For this assessment, you will deploy your developed full stack software product to a web service of your choice.
+## Overview
 
+The app lets users track planned vacations and the excursions associated with each, with full create, read, update, and delete operations on both. Each vacation can have multiple excursions tied to it through a foreign-key relationship in the underlying database. Users authenticate against a locally stored credential (hashed with SHA-256) before accessing their data and can generate filtered reports of their vacation history.
 
-## SUPPLEMENTAL RESOURCES  
-1.	How to clone a project to IntelliJ using Git?
+## Tech Stack
 
-> Ensure that you have Git installed on your system and that IntelliJ is installed using [Toolbox](https://www.jetbrains.com/toolbox-app/). Make sure that you are using version 2022.3.2. Once this has been confirmed, click the clone button and use the 'IntelliJ IDEA (HTTPS)' button. This will open IntelliJ with a prompt to clone the proejct. Save it in a safe location for the directory and press clone. IntelliJ will prompt you for your credentials. Enter in your WGU Credentials and the project will be cloned onto your local machine.  
+- **Language:** Java
+- **Platform:** Android (Android Studio, Gradle)
+- **Database:** SQLite via the Room persistence library
+- **UI:** Activities, RecyclerView with custom adapters, XML layouts
+- **Architecture:** Repository pattern over DAO interfaces, with DAO-backed entities
 
-2. How to create a branch and start Development?
+## Features
 
-- GitLab method
-> Press the '+' button located near your branch name. In the dropdown list, press the 'New branch' button. This will allow you to create a name for your branch. Once the branch has been named, you can select 'Create Branch' to push the branch to your repository.
+- Secure login with SHA-256 password hashing and input validation
+- Full CRUD on vacations — title, hotel, start/end dates, and client name
+- Full CRUD on excursions tied to a parent vacation via foreign key
+- Search and report generation with multi-row results, timestamps, and detailed display
+- Save and update confirmation messages for clear user feedback
+- Notification/reminder system via BroadcastReceiver
+- Unit tests covering login validation logic
 
-- IntelliJ method
-> In IntelliJ, Go to the 'Git' button on the top toolbar. Select the new branch option and create a name for the branch. Make sure checkout branch is selected and press create. You can now add a commit message and push the new branch to the local repo.
+## Architecture
 
-## SUPPORT
-If you need additional support, please navigate to the course page and reach out to your course instructor.
+The codebase is organized into clear layers:
 
-## FUTURE USE
-Take this opportunity to create or add to a simple resume portfolio to highlight and showcase your work for future use in career search, experience, and education!
+- **`UI/`** — Activities, Adapters, and the BroadcastReceiver handling user-facing logic
+- **`dao/`** — DAO interfaces defining database operations for Vacations and Excursions
+- **`database/`** — Room database class and a Repository class abstracting data access
+- **`entities/`** — Plain Java data classes representing Vacation and Excursion records
+
+Database operations run off the main thread via Room's executor service.
+
+## Building and Running
+
+1. Clone the repository.
+2. Open the project in Android Studio (Hedgehog or newer recommended).
+3. Allow Gradle to sync and resolve dependencies.
+4. Run on an emulator or physical device targeting API level 24 or higher.
+
+## Testing
+
+Unit tests covering login validation logic live in `app/src/test/`. Instrumented tests live in `app/src/androidTest/`.
+
+## Skills Demonstrated
+
+- Android application development with the Java SDK and Gradle build system
+- Persistence with Room and SQLite, including DAO design and foreign-key relationships
+- Secure credential handling with SHA-256 hashing rather than plaintext storage
+- Repository-pattern data access abstracting the UI from the database
+- RecyclerView and adapter implementation for dynamic list display
+- BroadcastReceiver and notification scheduling for time-based reminders
+- Unit testing in JUnit
+
+## Notes
+
+This project was completed as academic work for the Western Governors University Software Engineering capstone. Code, comments, and commit history reflect the iterative development process across the course.
